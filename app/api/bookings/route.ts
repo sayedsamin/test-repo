@@ -5,14 +5,34 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { learnerId, tutorId, courseId, sessionDate, durationMin, status, paymentSessionId, amount, sessionType = "individual" } = body;
+    const {
+      learnerId,
+      tutorId,
+      courseId,
+      sessionDate,
+      durationMin,
+      status,
+      paymentSessionId,
+      amount,
+      sessionType = "individual",
+    } = body;
 
-    console.log("Booking request received:", { learnerId, tutorId, courseId, sessionDate, amount, sessionType });
+    console.log("Booking request received:", {
+      learnerId,
+      tutorId,
+      courseId,
+      sessionDate,
+      amount,
+      sessionType,
+    });
 
     if (!learnerId || !tutorId || !courseId || !sessionDate) {
       console.error("Missing required fields");
       return NextResponse.json(
-        { error: "Missing required fields: learnerId, tutorId, courseId, sessionDate" },
+        {
+          error:
+            "Missing required fields: learnerId, tutorId, courseId, sessionDate",
+        },
         { status: 400 }
       );
     }
@@ -26,10 +46,7 @@ export async function POST(request: NextRequest) {
 
     if (!learner) {
       console.error("Learner not found:", learnerId);
-      return NextResponse.json(
-        { error: "Learner not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Learner not found" }, { status: 404 });
     }
 
     if (learner.role !== "learner") {
@@ -49,10 +66,7 @@ export async function POST(request: NextRequest) {
 
     if (!tutor) {
       console.error("Tutor not found:", tutorId);
-      return NextResponse.json(
-        { error: "Tutor not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Tutor not found" }, { status: 404 });
     }
 
     // Verify course exists
@@ -64,10 +78,7 @@ export async function POST(request: NextRequest) {
 
     if (!course) {
       console.error("Course not found:", courseId);
-      return NextResponse.json(
-        { error: "Course not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Course not found" }, { status: 404 });
     }
 
     // Determine payment amount - use provided amount or course trial rate
@@ -76,7 +87,7 @@ export async function POST(request: NextRequest) {
     console.log("Creating booking with sessionType:", sessionType);
 
     // Create booking with payment in a transaction
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       // Create booking
       const booking = await tx.booking.create({
         data: {
@@ -149,10 +160,10 @@ export async function POST(request: NextRequest) {
     console.error("Error creating booking:", error);
     console.error("Full error details:", JSON.stringify(error, null, 2));
     return NextResponse.json(
-      { 
+      {
         error: "Failed to create booking",
         details: error instanceof Error ? error.message : "Unknown error",
-        stack: error instanceof Error ? error.stack : undefined
+        stack: error instanceof Error ? error.stack : undefined,
       },
       { status: 500 }
     );

@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
-import { PrismaClient } from '../lib/generated/prisma/client';
+import { config } from "dotenv";
+import { PrismaClient } from "@prisma/client";
 
 // Load environment variables
 config();
@@ -8,8 +8,8 @@ const prisma = new PrismaClient();
 
 async function fixBookingPayments() {
   try {
-    console.log('Starting to fix booking payments...');
-    
+    console.log("Starting to fix booking payments...");
+
     // Find all bookings without payments
     const bookingsWithoutPayments = await prisma.booking.findMany({
       where: {
@@ -20,7 +20,9 @@ async function fixBookingPayments() {
       },
     });
 
-    console.log(`Found ${bookingsWithoutPayments.length} bookings without payment records`);
+    console.log(
+      `Found ${bookingsWithoutPayments.length} bookings without payment records`
+    );
 
     // Create payment records for each booking
     for (const booking of bookingsWithoutPayments) {
@@ -29,19 +31,24 @@ async function fixBookingPayments() {
           data: {
             bookingId: booking.id,
             amount: booking.course.trialRate, // Use the trial rate as the payment amount
-            paymentMethod: 'stripe',
-            paymentStatus: 'completed',
+            paymentMethod: "stripe",
+            paymentStatus: "completed",
             transactionId: `legacy_${booking.id}`,
           },
         });
 
-        console.log(`✓ Created payment for booking ${booking.id}: $${payment.amount}`);
+        console.log(
+          `✓ Created payment for booking ${booking.id}: $${payment.amount}`
+        );
       } catch (error) {
-        console.error(`✗ Failed to create payment for booking ${booking.id}:`, error);
+        console.error(
+          `✗ Failed to create payment for booking ${booking.id}:`,
+          error
+        );
       }
     }
 
-    console.log('\nDone! Payment records created for all bookings.');
+    console.log("\nDone! Payment records created for all bookings.");
 
     // Verify the results
     const allBookings = await prisma.booking.findMany({
@@ -50,11 +57,14 @@ async function fixBookingPayments() {
       },
     });
 
-    const bookingsWithPayments = allBookings.filter((b: any) => b.payment !== null);
-    console.log(`\nSummary: ${bookingsWithPayments.length}/${allBookings.length} bookings now have payment records`);
-
+    const bookingsWithPayments = allBookings.filter(
+      (b: any) => b.payment !== null
+    );
+    console.log(
+      `\nSummary: ${bookingsWithPayments.length}/${allBookings.length} bookings now have payment records`
+    );
   } catch (error) {
-    console.error('Error fixing booking payments:', error);
+    console.error("Error fixing booking payments:", error);
   } finally {
     await prisma.$disconnect();
   }

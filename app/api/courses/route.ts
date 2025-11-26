@@ -24,8 +24,17 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const { page, limit, search, difficulty, categoryId, tutorId, userId, createdAfter, createdBefore } =
-      validationResult.data;
+    const {
+      page,
+      limit,
+      search,
+      difficulty,
+      categoryId,
+      tutorId,
+      userId,
+      createdAfter,
+      createdBefore,
+    } = validationResult.data;
     const skip = (page - 1) * limit;
 
     // Build where clause
@@ -121,7 +130,14 @@ export async function GET(request: NextRequest) {
     ]);
 
     console.log("Fetched courses count:", courses.length);
-    console.log("Courses with tutorId:", courses.map(c => ({ id: c.id, title: c.title, tutorId: c.tutorId })));
+    console.log(
+      "Courses with tutorId:",
+      courses.map((c: any) => ({
+        id: c.id,
+        title: c.title,
+        tutorId: c.tutorId,
+      }))
+    );
 
     return NextResponse.json({
       success: true,
@@ -137,11 +153,14 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error("Error fetching courses:", error);
-    console.error("Error details:", error instanceof Error ? error.message : "Unknown error");
+    console.error(
+      "Error details:",
+      error instanceof Error ? error.message : "Unknown error"
+    );
     return NextResponse.json(
-      { 
+      {
         error: "Failed to fetch courses",
-        details: error instanceof Error ? error.message : "Unknown error"
+        details: error instanceof Error ? error.message : "Unknown error",
       },
       { status: 500 }
     );
@@ -189,7 +208,11 @@ export async function POST(request: NextRequest) {
 
     if (!tutor) {
       // Auto-create tutor profile if it doesn't exist
-      console.log("Tutor profile not found for userId:", userId, "- creating one");
+      console.log(
+        "Tutor profile not found for userId:",
+        userId,
+        "- creating one"
+      );
       tutor = await prisma.tutor.create({
         data: {
           userId,

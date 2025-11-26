@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
 
     // Get additional details for each review request
     const enrichedRequests = await Promise.all(
-      reviewRequests.map(async (request) => {
+      reviewRequests.map(async (request: any) => {
         // Get course details
         const course = await prisma.course.findUnique({
           where: { id: request.courseId },
@@ -84,9 +84,15 @@ export async function GET(request: NextRequest) {
     );
 
     // Filter out requests that already have reviews
-    const filteredRequests = enrichedRequests.filter(req => !req.hasExistingReview);
+    const filteredRequests = enrichedRequests.filter(
+      (req: any) => !req.hasExistingReview
+    );
 
-    console.log(`Returning ${filteredRequests.length} review requests (filtered ${enrichedRequests.length - filteredRequests.length} with existing reviews)`);
+    console.log(
+      `Returning ${filteredRequests.length} review requests (filtered ${
+        enrichedRequests.length - filteredRequests.length
+      } with existing reviews)`
+    );
 
     return NextResponse.json({
       success: true,

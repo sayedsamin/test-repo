@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { PrismaClient } from "../lib/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -167,7 +167,13 @@ async function main() {
         userId: tutorUsers[0].id,
         bio: "Full-stack developer with 8+ years of experience. Passionate about teaching modern web development technologies including React, Node.js, and TypeScript.",
         hourlyRate: 75,
-        specialties: ["React", "Node.js", "TypeScript", "JavaScript", "Web Development"],
+        specialties: [
+          "React",
+          "Node.js",
+          "TypeScript",
+          "JavaScript",
+          "Web Development",
+        ],
         availability: "Flexible - All days",
         sessionDuration: "1 hour",
         language: "English",
@@ -179,7 +185,12 @@ async function main() {
         userId: tutorUsers[1].id,
         bio: "Native Mandarin speaker and certified language instructor. Specializing in conversational Chinese and business communication for professionals.",
         hourlyRate: 50,
-        specialties: ["Mandarin Chinese", "Business Chinese", "Conversational Chinese", "Language Learning"],
+        specialties: [
+          "Mandarin Chinese",
+          "Business Chinese",
+          "Conversational Chinese",
+          "Language Learning",
+        ],
         availability: "Weekdays only",
         sessionDuration: "1 hour",
         language: "English",
@@ -203,7 +214,13 @@ async function main() {
         userId: tutorUsers[3].id,
         bio: "Senior UX/UI Designer at a Fortune 500 company. Helping aspiring designers build portfolios and land their dream jobs.",
         hourlyRate: 80,
-        specialties: ["UX Design", "UI Design", "Figma", "Adobe XD", "Design Thinking"],
+        specialties: [
+          "UX Design",
+          "UI Design",
+          "Figma",
+          "Adobe XD",
+          "Design Thinking",
+        ],
         availability: "Weekends only",
         sessionDuration: "2 hours",
         language: "English",
@@ -215,7 +232,12 @@ async function main() {
         userId: tutorUsers[4].id,
         bio: "Business consultant and entrepreneur. Founded 3 successful startups and now teaching others how to build and scale their businesses.",
         hourlyRate: 100,
-        specialties: ["Entrepreneurship", "Business Strategy", "Marketing", "Startups"],
+        specialties: [
+          "Entrepreneurship",
+          "Business Strategy",
+          "Marketing",
+          "Startups",
+        ],
         availability: "Weekdays only",
         sessionDuration: "1 hour",
         language: "English",

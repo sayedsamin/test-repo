@@ -49,14 +49,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: {
-        courses: courses.map(c => ({
+        courses: courses.map((c: any) => ({
           id: c.id,
           title: c.title,
           tutorId: c.tutorId,
           tutorName: c.tutor?.user?.name || "NO TUTOR",
           tutorEmail: c.tutor?.user?.email || "NO EMAIL",
         })),
-        tutors: tutors.map(t => ({
+        tutors: tutors.map((t: any) => ({
           id: t.id,
           userId: t.userId,
           name: t.user.name,
@@ -68,7 +68,10 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error in debug endpoint:", error);
     return NextResponse.json(
-      { error: "Debug query failed", details: error instanceof Error ? error.message : "Unknown error" },
+      {
+        error: "Debug query failed",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
