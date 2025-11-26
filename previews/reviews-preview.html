@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reviews Page Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @layer utilities {
+      .blur-3xl { filter: blur(72px); }
+      .animate-slow-pulse { animation: pulse 6s ease-in-out infinite; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+  <main class="min-h-screen flex items-start justify-center py-20 px-6">
+    <div class="relative w-full max-w-5xl">
+
+      <!-- Orbs/background -->
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-gradient-to-br from-blue-600/20 to-transparent blur-3xl opacity-60 animate-slow-pulse"></div>
+        <div class="absolute -bottom-20 right-[-10%] w-96 h-96 rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent blur-3xl opacity-50" style="animation-delay:1.5s"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.01)_1px,transparent_1px)] bg-[size:60px_60px] opacity-5"></div>
+      </div>
+
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold">Reviews & Ratings</h1>
+        <p class="text-slate-400 mt-1">Manage your feedback from students</p>
+
+        <div class="mt-4 flex items-center gap-3">
+          <div class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600/80 to-cyan-400/60 px-3 py-1 text-white text-sm shadow-md">
+            <svg class="h-4 w-4 text-yellow-300" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+            <span class="font-semibold">4.6</span>
+            <span class="opacity-80">avg</span>
+          </div>
+          <div class="rounded-full px-2 py-1 text-sm bg-white/5 text-slate-200">82% positive</div>
+        </div>
+      </header>
+
+      <!-- Stat cards -->
+      <div class="grid gap-4 sm:grid-cols-4 mb-8">
+        <div class="rounded-lg border bg-gradient-to-br from-slate-900/30 to-slate-800/10 p-4 shadow-sm backdrop-blur-sm hover:shadow-lg transform transition-all duration-200">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-100">
+              <svg class="h-5 w-5 text-yellow-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm text-slate-400">Avg Rating</p>
+              <p class="text-2xl font-bold">4.6</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-lg border bg-gradient-to-br from-slate-900/30 to-slate-800/10 p-4 shadow-sm backdrop-blur-sm hover:shadow-lg transform transition-all duration-200">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
+              <svg class="h-5 w-5 text-blue-600" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm text-slate-400">Reviews</p>
+              <p class="text-2xl font-bold">24</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-lg border bg-gradient-to-br from-slate-900/30 to-slate-800/10 p-4 shadow-sm backdrop-blur-sm hover:shadow-lg transform transition-all duration-200">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
+              <svg class="h-5 w-5 text-green-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l4 8H8z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm text-slate-400">Positive</p>
+              <p class="text-2xl font-bold">82%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-lg border bg-gradient-to-br from-slate-900/30 to-slate-800/10 p-4 shadow-sm backdrop-blur-sm hover:shadow-lg transform transition-all duration-200">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100">
+              <svg class="h-5 w-5 text-orange-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l4 8H8z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm text-slate-400">Pending</p>
+              <p class="text-2xl font-bold">3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Reviews -->
+      <section class="rounded-lg border bg-card shadow-sm mb-8">
+        <div class="border-b p-6">
+          <h3 class="text-lg font-semibold">Pending Reviews</h3>
+          <p class="text-sm text-slate-400 mt-1">Review and approve student feedback</p>
+        </div>
+        <div class="p-6 space-y-4">
+
+          <!-- Example pending card -->
+          <article class="p-4 hover:shadow-lg hover:-translate-y-1 transform transition-transform duration-200 bg-gradient-to-br from-white/2 to-transparent rounded-lg">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-sm">JS</div>
+              <div class="flex-1">
+                <h4 class="font-semibold">Jane Student</h4>
+                <p class="text-sm text-slate-400">Intro to Guitar</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <span class="text-sm text-slate-400 ml-2">(3/5)</span>
+                </div>
+                <p class="text-sm text-slate-400 mt-2">"Great teacher, learned chords quickly."</p>
+                <p class="text-xs text-slate-400 mt-2">Submitted on Nov 1, 2025</p>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-4">
+              <button class="px-3 py-1 rounded-md bg-white/5 text-slate-100">Delete</button>
+              <button class="px-3 py-1 rounded-md bg-green-600 text-white">Accept</button>
+              <button class="px-3 py-1 rounded-md border border-red-600 text-red-500">Reject</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Rating Breakdown -->
+      <section class="rounded-lg border bg-card shadow-sm mb-8 p-6">
+        <h3 class="text-lg font-semibold mb-2">Rating Breakdown</h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1 w-16">
+              <span class="text-sm font-medium">5</span>
+              <svg class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+            </div>
+            <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-600" style="width:70%"></div>
+            </div>
+            <span class="text-sm text-slate-400 w-12 text-right">14</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Accepted Reviews -->
+      <section class="rounded-lg border bg-card shadow-sm p-6">
+        <h3 class="text-lg font-semibold mb-4">Accepted Reviews</h3>
+        <div class="space-y-4">
+          <article class="p-4 hover:shadow-lg hover:-translate-y-1 transform transition-transform duration-200 bg-gradient-to-br from-white/2 to-transparent rounded-lg">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-sm">AB</div>
+              <div class="flex-1">
+                <h4 class="font-semibold">Alex B</h4>
+                <p class="text-sm text-slate-400">Advanced Piano</p>
+                <div class="flex items-center gap-1 mt-2">
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <svg class="h-4 w-4 text-yellow-400 fill-current" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431L23.6 9.75l-5.6 5.456L19.335 24 12 19.897 4.665 24 6 15.206 0.4 9.75l7.932-1.732z"/></svg>
+                  <span class="text-sm text-slate-400 ml-2">(5/5)</span>
+                </div>
+                <p class="text-sm text-slate-400 mt-2">"Excellent instructor, highly recommended."</p>
+                <p class="text-xs text-slate-400 mt-2">Accepted on Oct 5, 2025</p>
+              </div>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button class="px-3 py-1 rounded-md border border-red-600 text-red-500">Delete Review</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>
